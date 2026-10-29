@@ -38,7 +38,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-PAGES = {"home": "⌂ Басты бет", "dashboard": "◫ Пилоттық панель", "catalog": "▦ Тапсырмалар каталогы",
+PAGES = {"home": "⌂ Басты бет", "dashboard": "◫ Жұмыс панелі", "catalog": "▦ Тапсырмалар каталогы",
          "builder": "✦ Промт конструкторы", "excel": "▥ Excel → талдау", "workflow": "↻ Басқарушылық цикл"}
 
 ss = st.session_state
@@ -103,10 +103,10 @@ with st.sidebar:
     st.divider()
     with st.expander("Мектеп профилі (промтқа қосылады)"):
         ss.profile["school"] = st.text_input("Мектеп", value=ss.profile.get("school", ""),
-                                             placeholder="Мысалы: №12 ЖББМ")
+                                             placeholder="Мектеп атын жаз")
         ss.profile["region"] = st.text_input("Өңір", value=ss.profile.get("region", ""),
                                              placeholder="Мысалы: Павлодар облысы")
-    st.caption("Деректер тек осы сессияда сақталады. Жұмысты сақтау үшін «Пилоттық панель» бетінде "
+    st.caption("Деректер тек осы сессияда сақталады. Жұмысты сақтау үшін «Жұмыс панелі» бетінде "
                "JSON экспортын пайдаланыңыз.")
 
 
@@ -222,8 +222,7 @@ def page_builder():
                       placeholder="Мысалы: алдыңғы тоқсанмен салыстыру, сапа резервін бөліп көрсету")
         st.text_area("Алғашқы деректер", key="b_data", height=200,
                      placeholder="Excel/Google Sheets кестесін, CSV немесе мәтіндік деректерді қойыңыз.")
-        st.error("**Маңызды:** сыртқы ЖИ-ге жібермес бұрын аты-жөндерді, ЖСН, телефондарды және өзге дербес "
-                 "деректерді жасырындандырыңыз.")
+        st.error("")
         st.button("Мысал жүктеу", on_click=load_builder_example)
     with right:
         prompt = base_prompt(TASK_BY_ID[ss.b_task], ss.b_period.strip(), ss.b_scope.strip(), ss.b_extra.strip(),
